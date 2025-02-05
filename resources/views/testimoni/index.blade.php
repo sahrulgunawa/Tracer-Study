@@ -3,10 +3,6 @@
 @section('content')
 <div class="container">
     <h1>Daftar Testimoni</h1>
-    @if(auth()->user()->role === 'admin')
-        <a href="{{ route('testimoni.create') }}" class="btn btn-primary mb-3">Tambah Testimoni</a>
-    @endif
-
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -48,7 +44,6 @@
                     <td>{{ \Carbon\Carbon::parse($testimoni->tgl_testimoni)->format('d/m/Y') }}</td>
                     @if(auth()->user()->role === 'admin')
                         <td>
-                            <a href="{{ route('testimoni.edit', $testimoni->id_testimoni) }}" class="btn btn-warning btn-sm">Edit</a>
                             <form action="{{ route('testimoni.destroy', $testimoni->id_testimoni) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')

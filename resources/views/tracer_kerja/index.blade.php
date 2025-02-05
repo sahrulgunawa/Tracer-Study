@@ -3,10 +3,6 @@
 @section('content')
 <div class="container">
     <h1>Daftar Tracer Kerja</h1>
-    @if(auth()->user()->role === 'admin')
-        <a href="{{ route('tracer_kerja.create') }}" class="btn btn-primary mb-3">Tambah Tracer Kerja</a>
-    @endif
-
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -44,7 +40,6 @@
                     <td>{{ $item->tracer_kerja_gaji }}</td> <!-- Gaji -->
                     @if(auth()->user()->role === 'admin')
                         <td>
-                            <a href="{{ route('tracer_kerja.edit', $item->id_tracer_kerja) }}" class="btn btn-warning btn-sm">Edit</a>
                             <form action="{{ route('tracer_kerja.destroy', $item->id_tracer_kerja) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')

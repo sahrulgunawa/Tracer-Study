@@ -3,9 +3,7 @@
 @section('content')
 <div class="container">
     <h1>Tracer Kuliah List</h1>
-    @if(auth()->user()->role === 'admin')
-        <a href="{{ route('tracer_kuliah.create') }}" class="btn btn-primary mb-3">Add Tracer Kuliah</a>
-    @endif
+   
 
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -40,7 +38,6 @@
                     <td>{{ $item->tracer_kuliah_alamat }}</td>
                     @if(auth()->user()->role === 'admin')
                         <td>
-                            <a href="{{ route('tracer_kuliah.edit', $item->id_tracer_kuliah) }}" class="btn btn-warning btn-sm">Edit</a>
                             <form action="{{ route('tracer_kuliah.destroy', $item->id_tracer_kuliah) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
